@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainRegisterActivity extends AppCompatActivity {
 
-    private EditText Nome, Email, Password;
+    private EditText nome, email, password, passwordConfirm;
     private Button btnRegister;
     private Button btnBack;
 
@@ -21,9 +21,10 @@ public class MainRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Nome = findViewById(R.id.nome_register);
-        Email = findViewById(R.id.email_register);
-        Password = findViewById(R.id.password_register);
+        nome = findViewById(R.id.nome_register);
+        email = findViewById(R.id.email_register);
+        password = findViewById(R.id.password_register);
+        passwordConfirm = findViewById(R.id.passwordConfirm_register);
         btnRegister = findViewById(R.id.btn_register);
         btnBack = findViewById(R.id.btn_back);
 
@@ -31,32 +32,39 @@ public class MainRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (Nome.getText().toString().trim().isEmpty()) {
-                    Nome.setError("Nome é obrigatório");
-                    return; // Impede a execução do código abaixo
+                if (nome.getText().toString().trim().isEmpty()) {
+                    nome.setError("Nome é obrigatório");
+                    //return; // Impede a execução do código abaixo
                 }
-                if (Email.getText().toString().trim().isEmpty()) {
-                    Email.setError("E-mail é obrigatório");
+                if (email.getText().toString().trim().isEmpty()) {
+                    email.setError("E-mail é obrigatório");
+                    //return;
+                }
+                if (password.length() < 6) {
+                    Toast.makeText(MainRegisterActivity.this, "A senha deve ter pelo menos 6 caracteres.", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (Password.getText().toString().trim().isEmpty()) {
-                    Password.setError("Senha é obrigatória");
+                if (password.getText().toString().trim().isEmpty()) {
+                    password.setError("Senha é obrigatória");
+                    //return;
+                }
+                if (passwordConfirm.getText().toString().trim().isEmpty()) {
+                    passwordConfirm.setError("Senha é obrigatória");
                     return;
                 }
 
-                // Se tudo estiver preenchido, prosseguir com o cadastro (aqui você pode simular)
-                Toast.makeText(MainRegisterActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+                String passwordKey1 = password.getText().toString().trim();
+                String passwordKey2 = passwordConfirm.getText().toString().trim();
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                // Valida se as senhas são iguais
+                if (passwordKey1.equals(passwordKey2)) {
+                    Toast.makeText(MainRegisterActivity.this, "Cadastro concluído com sucesso!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Senhas não coincidem, exibe um erro
+                    Toast.makeText(MainRegisterActivity.this, "As senhas não coincidem. Tente novamente.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
