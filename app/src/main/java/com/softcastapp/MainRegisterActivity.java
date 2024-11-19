@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainRegisterActivity extends AppCompatActivity {
@@ -27,6 +25,14 @@ public class MainRegisterActivity extends AppCompatActivity {
         passwordConfirm = findViewById(R.id.passwordConfirm_register);
         btnRegister = findViewById(R.id.btn_register);
         btnBack = findViewById(R.id.btn_back);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
