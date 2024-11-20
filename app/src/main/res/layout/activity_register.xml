@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:padding="32dp">
 
-    <!-- Título Cadastro -->
-    <TextView
+     <TextView
         android:id="@+id/title_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +31,6 @@
         android:textColor="#000"
         android:textSize="16sp" />
 
-    <!-- Campo de E-mail -->
     <EditText
         android:id="@+id/email_register"
         android:layout_width="match_parent"
@@ -49,7 +47,6 @@
         android:textColor="#000"
         android:textSize="16sp" />
 
-    <!-- Campo de Senha -->
     <EditText
         android:id="@+id/password_register"
         android:layout_width="match_parent"
@@ -84,7 +81,6 @@
         android:textSize="16sp"
         android:importantForAccessibility="yes"/>
 
-    <!-- Botão Cadastrar -->
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"

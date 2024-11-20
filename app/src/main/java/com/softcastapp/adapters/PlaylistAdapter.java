@@ -21,7 +21,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     private List<Playlist> playlists;
     private Context context;
 
-    public PlaylistAdapter(List<Playlist> playlists, Context context) {
+    public PlaylistAdapter(Context context,List<Playlist> playlists) {
         this.playlists = playlists;
         this.context = context;
     }

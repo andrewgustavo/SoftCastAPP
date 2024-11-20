@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Título da Dashboard -->
     <TextView
         android:id="@+id/title_dashboard"
         android:layout_width="wrap_content"
@@ -16,7 +15,6 @@
         android:layout_marginBottom="16dp"
         android:textColor="#000" />
 
-    <!-- Botão para Logout -->
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
@@ -27,7 +25,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp" />
 
-    <!-- RecyclerView para exibir as playlists -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_playlists"
         android:layout_width="match_parent"
@@ -35,7 +32,6 @@
         android:layout_below="@id/btn_logout"
         android:paddingTop="8dp" />
 
-    <!-- Botão para criar nova playlist -->
     <Button
         android:id="@+id/btn_create_playlist"
         android:layout_width="wrap_content"

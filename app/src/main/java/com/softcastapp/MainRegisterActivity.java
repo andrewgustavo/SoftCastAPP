@@ -76,7 +76,6 @@ public class MainRegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    // Senhas não coincidem, exibe um erro
                     Toast.makeText(MainRegisterActivity.this, "As senhas não coincidem. Tente novamente.", Toast.LENGTH_SHORT).show();
                 }
             }

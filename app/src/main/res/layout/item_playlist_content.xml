@@ -25,11 +25,11 @@
         android:layout_marginLeft="50dp"/>
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/watchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/videoThumbnail"
-        android:text="Adicionar a Playlist"
+        android:text="Assistir"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="50dp"/>
 </LinearLayout>

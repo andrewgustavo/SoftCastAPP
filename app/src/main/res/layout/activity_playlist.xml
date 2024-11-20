@@ -4,7 +4,6 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:padding="16dp">
 
-<!-- Título da Dashboard -->
 <TextView
     android:id="@+id/title_dashboard"
     android:layout_width="wrap_content"
@@ -16,7 +15,6 @@ android:padding="16dp">
     android:layout_marginBottom="16dp"
     android:textColor="#000" />
 
-<!-- Botão para Voltar -->
 <Button
     android:id="@+id/btn_return"
     android:layout_width="wrap_content"
@@ -28,12 +26,22 @@ android:padding="16dp">
     android:layout_marginTop="40dp"
     android:visibility="visible"/>
 
-<!-- Lista de conteúdos (fictícia) -->
+<TextView
+    android:id="@+id/playlistTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btn_return"
+    android:layout_marginBottom="20dp"
+    android:paddingTop="18dp"
+    android:text="Título da Playlist"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+
 <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recyclerViewContent"
+    android:id="@+id/recyclerViewPlaylistContents"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_below="@id/btn_return"
+    android:layout_below="@id/playlistTitle"
     android:layout_above="@id/btn_add_content"
     android:paddingTop="8dp"/>
 
@@ -45,5 +53,4 @@ android:padding="16dp">
     android:layout_centerHorizontal="true"
     android:text="Adicionar Novo Conteúdo"
     android:visibility="visible"/>
-
 </RelativeLayout>

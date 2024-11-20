@@ -26,9 +26,8 @@ public class NewPlaylistActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String playlistName = editPlaylistName.getText().toString().trim();
                 if (!playlistName.isEmpty()) {
-                    // Simular a criação de uma nova playlist
                     Toast.makeText(NewPlaylistActivity.this, "Playlist '" + playlistName + "' criada!", Toast.LENGTH_SHORT).show();
-                    finish(); // Voltar para a Dashboard após salvar
+                    finish();
                 } else {
                     Toast.makeText(NewPlaylistActivity.this, "Por favor, insira um nome para a playlist.", Toast.LENGTH_SHORT).show();
                 }

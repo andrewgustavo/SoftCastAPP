@@ -28,23 +28,22 @@ public class DashboardActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Volta para a tela principal (login)
                 Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish(); // Encerra a atividade atual para impedir que o usuário volte com "voltar"
+                finish();
             }
         });
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_playlists);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Playlist> fakePlaylists = new ArrayList<>();
-        fakePlaylists.add(new Playlist("Minha Playlist 1","Exemplo 1"));
-        fakePlaylists.add(new Playlist("Minha Playlist 2","Exemplo 2"));
-        fakePlaylists.add(new Playlist("Minha Playlist 3","Exemplo 3"));
+        List<Playlist> listPlaylists = new ArrayList<>();
+        listPlaylists.add(new Playlist("Minha Playlist 1","Exemplo 1"));
+        listPlaylists.add(new Playlist("Minha Playlist 2","Exemplo 2"));
+        listPlaylists.add(new Playlist("Minha Playlist 3","Exemplo 3"));
 
-        PlaylistAdapter adapter = new PlaylistAdapter(fakePlaylists, this);
+        PlaylistAdapter adapter = new PlaylistAdapter(this,listPlaylists);
         recyclerView.setAdapter(adapter);
 
         btnCreatePlayList.setOnClickListener(new View.OnClickListener() {

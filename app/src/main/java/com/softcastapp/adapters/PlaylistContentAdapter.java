@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 import java.util.List;
 
-public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentViewHolder> {
+public class PlaylistContentAdapter extends RecyclerView.Adapter<PlaylistContentAdapter.ContentViewHolder> {
 
     private List<Conteudo> listaDeConteudos;
     private Context context;
 
-    public ContentAdapter(Context context, List<Conteudo> listaDeConteudos) {
+    public PlaylistContentAdapter(Context context, List<Conteudo> listaDeConteudos) {
         this.context = context;
         this.listaDeConteudos = listaDeConteudos;
     }
@@ -26,7 +26,7 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
     @Override
     public ContentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
-                .inflate(R.layout.item_content, parent, false);
+                .inflate(R.layout.item_playlist_content, parent, false);
         return new ContentViewHolder(view);
     }
 
@@ -36,10 +36,10 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
 
         holder.title.setText(conteudo.getTitulo());
 
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
+        holder.watchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, conteudo.getTitulo() + " Adicionado a Playlist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Assistindo: " + conteudo.getTitulo(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -51,12 +51,12 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentV
 
     public static class ContentViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-        Button addButton;
+        Button watchButton;
         ImageView thumbnail;
         public ContentViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.content_title);
-            addButton = itemView.findViewById(R.id.addButton);
+            watchButton = itemView.findViewById(R.id.watchButton);
             thumbnail = itemView.findViewById(R.id.videoThumbnail);
         }
 
