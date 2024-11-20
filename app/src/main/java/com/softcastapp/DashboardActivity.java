@@ -15,7 +15,7 @@ import com.softcastapp.adapters.PlaylistAdapter;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    private Button btnLogout;
+    private Button btnLogout, btnCreatePlayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         btnLogout = findViewById(R.id.btn_logout);
+        btnCreatePlayList = findViewById(R.id.btn_create_playlist);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +47,12 @@ public class DashboardActivity extends AppCompatActivity {
         PlaylistAdapter adapter = new PlaylistAdapter(fakePlaylists, this);
         recyclerView.setAdapter(adapter);
 
-        Button btnCreatePlaylist = findViewById(R.id.btn_create_playlist);
-        btnCreatePlaylist.setOnClickListener(v -> {
-            // Lógica para criar uma nova playlist (iremos implementar no próximo passo)
-            Toast.makeText(this, "Criar nova playlist clicado", Toast.LENGTH_SHORT).show();
+        btnCreatePlayList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, NewPlaylistActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

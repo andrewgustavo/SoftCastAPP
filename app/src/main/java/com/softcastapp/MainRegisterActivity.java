@@ -14,6 +14,11 @@ public class MainRegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnBack;
 
+    public boolean isEmailValid(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+        return email.matches(emailPattern);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +45,15 @@ public class MainRegisterActivity extends AppCompatActivity {
 
                 if (nome.getText().toString().trim().isEmpty()) {
                     nome.setError("Nome é obrigatório");
-                    //return; // Impede a execução do código abaixo
+                    return;
                 }
                 if (email.getText().toString().trim().isEmpty()) {
                     email.setError("E-mail é obrigatório");
-                    //return;
+                    return;
+                }
+                if (!isEmailValid(email.getText().toString())) {
+                    Toast.makeText(MainRegisterActivity.this, "Por favor, insira um e-mail válido", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 if (password.length() < 6) {
                     Toast.makeText(MainRegisterActivity.this, "A senha deve ter pelo menos 6 caracteres.", Toast.LENGTH_SHORT).show();
@@ -52,7 +61,7 @@ public class MainRegisterActivity extends AppCompatActivity {
                 }
                 if (password.getText().toString().trim().isEmpty()) {
                     password.setError("Senha é obrigatória");
-                    //return;
+                    return;
                 }
                 if (passwordConfirm.getText().toString().trim().isEmpty()) {
                     passwordConfirm.setError("Senha é obrigatória");
@@ -62,7 +71,6 @@ public class MainRegisterActivity extends AppCompatActivity {
                 String passwordKey1 = password.getText().toString().trim();
                 String passwordKey2 = passwordConfirm.getText().toString().trim();
 
-                // Valida se as senhas são iguais
                 if (passwordKey1.equals(passwordKey2)) {
                     Toast.makeText(MainRegisterActivity.this, "Cadastro concluído com sucesso!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainRegisterActivity.this, MainActivity.class);

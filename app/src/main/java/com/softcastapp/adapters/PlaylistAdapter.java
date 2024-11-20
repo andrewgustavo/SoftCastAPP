@@ -1,7 +1,9 @@
 package com.softcastapp.adapters;
 
 import com.softcastapp.R;
+import com.softcastapp.EditPlaylistActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +36,12 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         String playlist = playlists.get(position);
         holder.textViewTitle.setText(playlist);
 
-        // Ações de clique para os ícones
-        holder.imageViewEdit.setOnClickListener(v ->
-                Toast.makeText(context, "Editar " + playlist, Toast.LENGTH_SHORT).show()
-        );
+        holder.imageViewEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditPlaylistActivity.class);
+            intent.putExtra("playlist_name", playlist); // Passando a playlist para a nova Activity
+            context.startActivity(intent);
+        });
+
         holder.imageViewDelete.setOnClickListener(v ->
                 Toast.makeText(context, "Excluir " + playlist, Toast.LENGTH_SHORT).show()
         );

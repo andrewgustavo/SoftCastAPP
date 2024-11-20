@@ -19,6 +19,8 @@
 
         <activity android:name=".MainRegisterActivity"></activity>
         <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".NewPlaylistActivity"></activity>
+        <activity android:name=".EditPlaylistActivity"></activity>
 
     </application>
 

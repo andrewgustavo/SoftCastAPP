@@ -64,7 +64,8 @@
         android:paddingRight="12dp"
         android:background="@drawable/edit_text_background"
         android:textColor="#000"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
 
     <EditText
         android:id="@+id/passwordConfirm_register"
@@ -80,7 +81,8 @@
         android:paddingRight="12dp"
         android:background="@drawable/edit_text_background"
         android:textColor="#000"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:importantForAccessibility="yes"/>
 
     <!-- Botão Cadastrar -->
     <Button
@@ -88,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/passwordConfirm_register"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:background="@color/black"
         android:padding="14dp"
         android:text="Cadastrar"
@@ -102,5 +104,5 @@
         android:text="Voltar"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="50dp" />
 </RelativeLayout>
