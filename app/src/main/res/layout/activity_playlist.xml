@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="16dp">
+
+<!-- Título da Dashboard -->
+<TextView
+    android:id="@+id/title_dashboard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Conteúdos da Playlist"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="16dp"
+    android:textColor="#000" />
+
+<!-- Botão para Voltar -->
+<Button
+    android:id="@+id/btn_return"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/title_dashboard"
+    android:text="Voltar"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="40dp"
+    android:visibility="visible"/>
+
+<!-- Lista de conteúdos (fictícia) -->
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerViewContent"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_below="@id/btn_return"
+    android:layout_above="@id/btn_add_content"
+    android:paddingTop="8dp"/>
+
+<Button
+    android:id="@+id/btn_add_content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:text="Adicionar Novo Conteúdo"
+    android:visibility="visible"/>
+
+</RelativeLayout>

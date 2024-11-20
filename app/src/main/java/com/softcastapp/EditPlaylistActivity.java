@@ -21,7 +21,7 @@ public class EditPlaylistActivity extends AppCompatActivity {
         btnUpdatePlaylist = findViewById(R.id.btn_update_playlist);
 
         // Receber informações da playlist que será editada (simulada por enquanto)
-        String playlistName = getIntent().getStringExtra("playlist_name");
+        String playlistName = getIntent().getStringExtra("playlist_title");
         if (playlistName != null) {
             editPlaylistName.setText(playlistName);
         }

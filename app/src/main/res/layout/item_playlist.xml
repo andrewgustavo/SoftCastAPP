@@ -7,7 +7,7 @@
     android:background="@drawable/card_background">
 
     <TextView
-        android:id="@+id/text_view_title"
+        android:id="@+id/playlist_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,14 +16,14 @@
         android:padding="8dp" />
 
     <ImageView
-        android:id="@+id/image_view_edit"
+        android:id="@+id/edit_playlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="12dp"
         android:src="@drawable/ic_edit" />
 
     <ImageView
-        android:id="@+id/image_view_delete"
+        android:id="@+id/delete_playlist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete" />

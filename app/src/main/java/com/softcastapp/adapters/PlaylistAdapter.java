@@ -2,6 +2,8 @@ package com.softcastapp.adapters;
 
 import com.softcastapp.R;
 import com.softcastapp.EditPlaylistActivity;
+import com.softcastapp.PlaylistActivity;
+import com.softcastapp.models.Playlist;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,10 +18,10 @@ import java.util.List;
 
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder> {
 
-    private List<String> playlists;
+    private List<Playlist> playlists;
     private Context context;
 
-    public PlaylistAdapter(List<String> playlists, Context context) {
+    public PlaylistAdapter(List<Playlist> playlists, Context context) {
         this.playlists = playlists;
         this.context = context;
     }
@@ -33,17 +35,23 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
 
     @Override
     public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position) {
-        String playlist = playlists.get(position);
-        holder.textViewTitle.setText(playlist);
+        Playlist playlist = playlists.get(position);
+        holder.title.setText(playlist.getTitle());
 
-        holder.imageViewEdit.setOnClickListener(v -> {
+        holder.title.setOnClickListener(v -> {
+                Intent intent = new Intent(context, PlaylistActivity.class);
+                intent.putExtra("playlist_title", playlist.getTitle());
+                context.startActivity(intent);
+        });
+
+        holder.Edit.setOnClickListener(v -> {
             Intent intent = new Intent(context, EditPlaylistActivity.class);
-            intent.putExtra("playlist_name", playlist); // Passando a playlist para a nova Activity
+            intent.putExtra("playlist_title", playlist.getTitle());
             context.startActivity(intent);
         });
 
-        holder.imageViewDelete.setOnClickListener(v ->
-                Toast.makeText(context, "Excluir " + playlist, Toast.LENGTH_SHORT).show()
+        holder.Delete.setOnClickListener(v ->
+            Toast.makeText(context, "Excluir " + playlist.getTitle(), Toast.LENGTH_SHORT).show()
         );
     }
 
@@ -53,15 +61,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     }
 
     public static class PlaylistViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTitle;
-        ImageView imageViewEdit;
-        ImageView imageViewDelete;
+        TextView title;
+        ImageView Edit, Delete;
 
         public PlaylistViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_title);
-            imageViewEdit = itemView.findViewById(R.id.image_view_edit);
-            imageViewDelete = itemView.findViewById(R.id.image_view_delete);
+            title = itemView.findViewById(R.id.playlist_title);
+            Edit = itemView.findViewById(R.id.edit_playlist);
+            Delete = itemView.findViewById(R.id.delete_playlist);
         }
     }
 }

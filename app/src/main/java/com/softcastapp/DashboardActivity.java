@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.softcastapp.adapters.PlaylistAdapter;
+import com.softcastapp.models.Playlist;
 
 
 public class DashboardActivity extends AppCompatActivity {
@@ -39,10 +39,10 @@ public class DashboardActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_playlists);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<String> fakePlaylists = new ArrayList<>();
-        fakePlaylists.add("Minha Playlist 1");
-        fakePlaylists.add("Minha Playlist 2");
-        fakePlaylists.add("Minha Playlist 3");
+        List<Playlist> fakePlaylists = new ArrayList<>();
+        fakePlaylists.add(new Playlist("Minha Playlist 1","Exemplo 1"));
+        fakePlaylists.add(new Playlist("Minha Playlist 2","Exemplo 2"));
+        fakePlaylists.add(new Playlist("Minha Playlist 3","Exemplo 3"));
 
         PlaylistAdapter adapter = new PlaylistAdapter(fakePlaylists, this);
         recyclerView.setAdapter(adapter);

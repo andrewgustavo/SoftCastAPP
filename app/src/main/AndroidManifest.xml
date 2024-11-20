@@ -17,10 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainRegisterActivity"></activity>
+        <activity android:name=".ContentActivity"></activity>
         <activity android:name=".DashboardActivity"></activity>
-        <activity android:name=".NewPlaylistActivity"></activity>
         <activity android:name=".EditPlaylistActivity"></activity>
+        <activity android:name=".MainRegisterActivity"></activity>
+        <activity android:name=".NewPlaylistActivity"></activity>
+        <activity android:name=".PlaylistActivity"></activity>
 
     </application>
 
