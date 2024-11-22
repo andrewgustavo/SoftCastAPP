@@ -1,5 +1,6 @@
-package com.softcastapp;
+package com.softcastapp.activities;
 
+import com.softcastapp.R;
 import com.softcastapp.adapters.PlaylistContentAdapter;
 import com.softcastapp.models.Conteudo;
 import android.content.Intent;

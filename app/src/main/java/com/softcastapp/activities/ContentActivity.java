@@ -1,5 +1,6 @@
-package com.softcastapp;
+package com.softcastapp.activities;
 
+import com.softcastapp.R;
 import com.softcastapp.adapters.ContentAdapter;
 import android.content.Intent;
 import android.os.Bundle;

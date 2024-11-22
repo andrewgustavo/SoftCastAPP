@@ -1,8 +1,8 @@
 package com.softcastapp.adapters;
 
 import com.softcastapp.R;
-import com.softcastapp.EditPlaylistActivity;
-import com.softcastapp.PlaylistActivity;
+import com.softcastapp.activities.EditPlaylistActivity;
+import com.softcastapp.activities.PlaylistActivity;
 import com.softcastapp.models.Playlist;
 import android.content.Context;
 import android.content.Intent;

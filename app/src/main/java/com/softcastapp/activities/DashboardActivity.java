@@ -1,4 +1,4 @@
-package com.softcastapp;
+package com.softcastapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.softcastapp.R;
 import com.softcastapp.adapters.PlaylistAdapter;
 import com.softcastapp.models.Playlist;
 
