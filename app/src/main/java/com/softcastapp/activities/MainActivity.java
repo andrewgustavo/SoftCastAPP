@@ -2,10 +2,15 @@ package com.softcastapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private Button btnRegister;
     private EditText email, password;
-    private ApiService apiService; // Adicionada a variável ApiService
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +68,38 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-                            startActivity(intent);
+
+                            Log Log = null;
+
+                            String encodedEmail = emailInput;
+                            try {
+                                // Codificar apenas se necessário
+                                if (!emailInput.contains("%40")) {
+                                    encodedEmail = URLEncoder.encode(emailInput, "UTF-8");
+                                }
+                            } catch (UnsupportedEncodingException e) {
+                            }
+
+
+                            apiService.getUsuarioByEmail(encodedEmail).enqueue(new Callback<UsuarioLogin>() {
+                                @Override
+                                public void onResponse(Call<UsuarioLogin> call, Response<UsuarioLogin> response) {
+                                    if (response.isSuccessful() && response.body() != null) {
+                                        UsuarioLogin usuarioLogin = response.body();
+                                        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
+                                        intent.putExtra("USUARIO", usuarioLogin);
+                                        startActivity(intent);
+                                        Log.d("DEBUG", "Usuário logado: " + usuarioLogin.getId());
+                                    } else {
+                                        Log.e("DEBUG", "Erro na resposta da API: " + response.code());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<UsuarioLogin> call, Throwable t) {
+                                }
+                            });
+
                         } else {
                             Toast.makeText(MainActivity.this, "Credenciais inválidas. Tente novamente.", Toast.LENGTH_SHORT).show();
                         }

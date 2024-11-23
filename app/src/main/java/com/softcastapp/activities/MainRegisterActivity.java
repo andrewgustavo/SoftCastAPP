@@ -83,7 +83,7 @@ public class MainRegisterActivity extends AppCompatActivity {
                             nome.getText().toString(),
                             email.getText().toString(),
                             passwordKey1,
-                            "2000-01-01"  // Use a data de nascimento adequada
+                            "1990-01-01"
                     );
 
                     // Enviar dados para a API com Retrofit

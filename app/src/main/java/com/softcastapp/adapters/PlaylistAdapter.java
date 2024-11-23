@@ -2,8 +2,8 @@ package com.softcastapp.adapters;
 
 import com.softcastapp.R;
 import com.softcastapp.activities.EditPlaylistActivity;
-import com.softcastapp.activities.PlaylistActivity;
-import com.softcastapp.models.Playlist;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,12 +16,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
+import com.softcastapp.activities.PlaylistActivity;
+import com.softcastapp.models.Playlist;
+import com.softcastapp.services.ApiService;
+import com.softcastapp.services.RetrofitClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder> {
 
     private List<Playlist> playlists;
     private Context context;
 
-    public PlaylistAdapter(Context context,List<Playlist> playlists) {
+    public PlaylistAdapter(Context context, List<Playlist> playlists) {
         this.playlists = playlists;
         this.context = context;
     }
@@ -29,30 +37,60 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
     @NonNull
     @Override
     public PlaylistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_playlist, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_playlist, parent, false);
         return new PlaylistViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlaylistViewHolder holder, int position) {
         Playlist playlist = playlists.get(position);
-        holder.title.setText(playlist.getTitle());
+        holder.playlistName.setText(playlist.getNome()); // Exibindo o nome da playlist
 
-        holder.title.setOnClickListener(v -> {
-                Intent intent = new Intent(context, PlaylistActivity.class);
-                intent.putExtra("playlist_title", playlist.getTitle());
-                context.startActivity(intent);
+        holder.playlistName.setOnClickListener(v -> {
+            Intent contentIntent = new Intent(context, PlaylistActivity.class);
+            contentIntent.putExtra("PLAYLIST_ID", playlist.getPlaylistID());
+            contentIntent.putExtra("playlist_title", playlist.getNome());
+            context.startActivity(contentIntent);
         });
 
-        holder.Edit.setOnClickListener(v -> {
-            Intent intent = new Intent(context, EditPlaylistActivity.class);
-            intent.putExtra("playlist_title", playlist.getTitle());
-            context.startActivity(intent);
+        holder.editButton.setOnClickListener(v -> {
+            // Intent para editar a playlist
+            Intent editIntent = new Intent(context, EditPlaylistActivity.class);
+            editIntent.putExtra("PLAYLIST_ID", playlist.getPlaylistID());
+            editIntent.putExtra("playlist_title", playlist.getNome());
+
+            // Convertendo o contexto para uma Activity para usar startActivityForResult
+            if (context instanceof Activity) {
+                ((Activity) context).startActivityForResult(editIntent, 2);
+            }
         });
 
-        holder.Delete.setOnClickListener(v ->
-            Toast.makeText(context, "Excluir " + playlist.getTitle(), Toast.LENGTH_SHORT).show()
-        );
+        holder.deleteButton.setOnClickListener(v -> {
+            // Deletar a playlist
+            deletePlaylist(playlist.getPlaylistID());
+        });
+    }
+
+    private void deletePlaylist(int playlistID) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+
+        apiService.deletePlaylist(playlistID).enqueue(new Callback<Playlist>() {
+            @Override
+            public void onResponse(Call<Playlist> call, Response<Playlist> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, "Playlist excluída com sucesso!", Toast.LENGTH_SHORT).show();
+                    playlists.removeIf(p -> p.getPlaylistID() == playlistID);
+                    notifyDataSetChanged();
+                } else {
+                    Toast.makeText(context, "Erro ao excluir playlist.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Playlist> call, Throwable t) {
+                Toast.makeText(context, "Falha na conexão: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -60,15 +98,15 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         return playlists.size();
     }
 
-    public static class PlaylistViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        ImageView Edit, Delete;
+    public class PlaylistViewHolder extends RecyclerView.ViewHolder {
+        TextView playlistName;
+        ImageView editButton, deleteButton;
 
-        public PlaylistViewHolder(@NonNull View itemView) {
+        public PlaylistViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.playlist_title);
-            Edit = itemView.findViewById(R.id.edit_playlist);
-            Delete = itemView.findViewById(R.id.delete_playlist);
+            playlistName = itemView.findViewById(R.id.playlist_title);
+            editButton = itemView.findViewById(R.id.edit_playlist);
+            deleteButton = itemView.findViewById(R.id.delete_playlist);
         }
     }
 }

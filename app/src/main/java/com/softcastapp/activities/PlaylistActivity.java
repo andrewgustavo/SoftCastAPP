@@ -18,6 +18,7 @@ public class PlaylistActivity extends AppCompatActivity {
 
     private Button btnBack, btnAddContent;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +30,7 @@ public class PlaylistActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlaylistActivity.this, DashboardActivity.class);
-                startActivity(intent);
+                finish(); // Volta para a atividade anterior
             }
         });
 
@@ -53,9 +53,9 @@ public class PlaylistActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<Conteudo> contentsPlaylist = new ArrayList<>();
-        contentsPlaylist.add(new Conteudo("Título 1", "Descrição 1"));
-        contentsPlaylist.add(new Conteudo("Título 2", "Descrição 2"));
-        contentsPlaylist.add(new Conteudo("Título 3", "Descrição 3"));
+        contentsPlaylist.add(new Conteudo(1, "Descrição 1","teste","teste","teste","teste"));
+        contentsPlaylist.add(new Conteudo(2, "Descrição 2","teste","teste","teste","teste"));
+        contentsPlaylist.add(new Conteudo(3, "Descrição 3","teste","teste","teste","teste"));
 
         PlaylistContentAdapter adapter = new PlaylistContentAdapter(this,contentsPlaylist);
         recyclerView.setAdapter(adapter);

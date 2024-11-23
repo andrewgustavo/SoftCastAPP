@@ -44,14 +44,14 @@ public class ContentActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<Conteudo> contents = new ArrayList<>();
-        contents.add(new Conteudo("Vídeo 1", "Descrição do Vídeo 1"));
-        contents.add(new Conteudo("Vídeo 2", "Descrição do Vídeo 2"));
-        contents.add(new Conteudo("Vídeo 3", "Descrição do Vídeo 3"));
-        contents.add(new Conteudo("Vídeo 4", "Descrição do Vídeo 4"));
-        contents.add(new Conteudo("Vídeo 5", "Descrição do Vídeo 5"));
-        contents.add(new Conteudo("Vídeo 6", "Descrição do Vídeo 6"));
-        contents.add(new Conteudo("Vídeo 7", "Descrição do Vídeo 7"));
-        contents.add(new Conteudo("Vídeo 8", "Descrição do Vídeo 8"));
+        contents.add(new Conteudo(1, "Descrição do Vídeo 1","teste","teste","teste","teste"));
+        contents.add(new Conteudo(2, "Descrição do Vídeo 2","teste","teste","teste","teste"));
+        contents.add(new Conteudo(3, "Descrição do Vídeo 3","teste","teste","teste","teste"));
+        contents.add(new Conteudo(4, "Descrição do Vídeo 4","teste","teste","teste","teste"));
+        contents.add(new Conteudo(5, "Descrição do Vídeo 5","teste","teste","teste","teste"));
+        contents.add(new Conteudo(6, "Descrição do Vídeo 6","teste","teste","teste","teste"));
+        contents.add(new Conteudo(7, "Descrição do Vídeo 7","teste","teste","teste","teste"));
+        contents.add(new Conteudo(8, "Descrição do Vídeo 8","teste","teste","teste","teste"));
 
         ContentAdapter adapter = new ContentAdapter(this, contents);
         recyclerView.setAdapter(adapter);

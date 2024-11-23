@@ -1,30 +1,40 @@
 package com.softcastapp.models;
 
-public class Playlist {
-    private String title;
-    private String description;
+import java.io.Serializable;
 
-    // Construtor
-    public Playlist(String title, String description) {
-        this.title = title;
-        this.description = description;
+public class Playlist implements Serializable {
+    private int ID;
+    private String Nome;
+    private int UsuarioID;
+
+    // Construtor padrão
+    public Playlist() {
     }
 
-    // Getters
-    public String getTitle() {
-        return title;
+    // Construtor com argumentos
+    public Playlist(String nome, int usuarioId) {
+                this.Nome = nome;
+        this.UsuarioID = usuarioId;
+    }
+    public int getPlaylistID() {
+        return ID;
+    }
+    public void setPlaylistID(int ID) {
+        this.ID = ID;
+    }
+    public String getNome() {
+        return Nome;
     }
 
-    public String getDescription() {
-        return description;
+    public void setNome(String nome) {
+        this.Nome = nome;
     }
 
-    // Setters
-    public void setTitle(String title) {
-        this.title = title;
+    public int getId() {
+        return UsuarioID;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int usuarioId) {
+        this.UsuarioID = usuarioId;
     }
 }
