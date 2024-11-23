@@ -3,6 +3,8 @@ package com.softcastapp.activities;
 import com.softcastapp.R;
 import com.softcastapp.adapters.PlaylistContentAdapter;
 import com.softcastapp.models.Conteudo;
+import com.softcastapp.models.UsuarioLogin;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,26 +26,42 @@ public class PlaylistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist);
 
+        // Recuperando o ID da Playlist da Intent
+        Intent playlistTntent = getIntent();
+        int playlistId = playlistTntent.getIntExtra("PLAYLIST_ID", -1);  // Usando a chave correta
+
+        // Pegando o objeto UsuarioLogin da Intent
+        Intent intent = getIntent();
+        UsuarioLogin usuarioLogin = (UsuarioLogin) intent.getSerializableExtra("USUARIO");
+
         btnBack = findViewById(R.id.btn_return);
         btnAddContent = findViewById(R.id.btn_add_content);
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Volta para a atividade anterior
-            }
+        btnBack.setOnClickListener(v -> {
+            Intent dashboardIntent = new Intent(PlaylistActivity.this, DashboardActivity.class);
+            // Garante que DashboardActivity será exibida, removendo outras atividades da pilha
+            dashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(dashboardIntent);
+            finish();
         });
 
         btnAddContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Criar a intent para ir para a ContentActivity
                 Intent intent = new Intent(PlaylistActivity.this, ContentActivity.class);
+
+                // Passando o título da playlist
                 intent.putExtra("playlist_title", getIntent().getStringExtra("playlist_title"));
+
+                // Passando o ID da Playlist
+                intent.putExtra("playlistId", playlistId);  // Usando o valor que já pegamos
+
                 startActivity(intent);
             }
         });
 
-        Intent intent = getIntent();
+        Intent backIntent = getIntent();
         String playlistTitle = intent.getStringExtra("playlist_title");
 
         TextView playlistTitleTextView = findViewById(R.id.playlistTitle);

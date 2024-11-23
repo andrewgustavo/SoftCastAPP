@@ -4,66 +4,66 @@ import java.io.Serializable;
 
 public class Conteudo implements Serializable {
     private int ID;
-    private String titulo;
-    private String tipo;
-    private String descricao;
-    private String classificacaoIndicativa;
-    private String videoPath;
+    private String Titulo;
+    private String Tipo;
+    private String Descricao;
+    private String ClassificacaoIndicativa;
+    private String VideoPath;
 
     // Construtor
     public Conteudo(int ID, String titulo, String tipo, String descricao, String classificacaoIndicativa, String videoPath) {
         this.ID = ID;
-        this.titulo = titulo;
-        this.tipo = tipo;
-        this.descricao = descricao;
-        this.classificacaoIndicativa = classificacaoIndicativa;
-        this.videoPath = videoPath;
+        this.Titulo = titulo;
+        this.Tipo = tipo;
+        this.Descricao = descricao;
+        this.ClassificacaoIndicativa = classificacaoIndicativa;
+        this.VideoPath = videoPath;
     }
 
-    public int getConteudoID() {
+    public int getId() {
         return ID;
     }
 
-    public void setConteudoID(int ID) {
+    public void setId(int ID) {
         this.ID = ID;
     }
     public String getTitulo() {
-        return titulo;
+        return Titulo;
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        this.Titulo = Titulo;
     }
 
     public String getTipo() {
-        return tipo;
+        return Tipo;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.Tipo = tipo;
     }
 
     public String getDescricao() {
-        return descricao;
+        return Descricao;
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.Descricao = descricao;
     }
 
     public String getClassificacaoIndicativa() {
-        return classificacaoIndicativa;
+        return ClassificacaoIndicativa;
     }
 
     public void setClassificacaoIndicativa(String classificacaoIndicativa) {
-        this.classificacaoIndicativa = classificacaoIndicativa;
+        this.ClassificacaoIndicativa = classificacaoIndicativa;
     }
 
     public String getVideoPath() {
-        return videoPath;
+        return VideoPath;
     }
 
     public void setVideoPath(String videoPath) {
-        this.videoPath = videoPath;
+        this.VideoPath = VideoPath;
     }
 }

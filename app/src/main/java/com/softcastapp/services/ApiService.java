@@ -1,5 +1,6 @@
 package com.softcastapp.services;
 
+import com.softcastapp.models.Conteudo;
 import com.softcastapp.models.Playlist;
 import com.softcastapp.models.UsuarioLogin;
 import com.softcastapp.models.UsuarioRegister;
@@ -36,5 +37,11 @@ public interface ApiService {
 
     @DELETE ("api/PlaylistsRepository/{id}")
     Call<Playlist> deletePlaylist (@Path("id") int id);
+
+    @GET("api/Conteudos")
+    Call<List<Conteudo>> getConteudos();
+
+    @POST("api/ItensPlaylist/playlist/{playlistId}/conteudo/{conteudoId}")
+    Call<Void> vincularConteudo(@Path("playlistId") int playlistId, @Path("conteudoId") int conteudoId);
 
 }
