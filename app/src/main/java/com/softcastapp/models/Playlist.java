@@ -7,6 +7,7 @@ public class Playlist implements Serializable {
     private String Nome;
     private int UsuarioID;
 
+
     // Construtor padrão
     public Playlist() {
     }

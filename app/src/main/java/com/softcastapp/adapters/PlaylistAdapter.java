@@ -66,7 +66,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.Playli
         });
 
         holder.deleteButton.setOnClickListener(v -> {
-            // Deletar a playlist
             deletePlaylist(playlist.getPlaylistID());
         });
     }

@@ -44,4 +44,9 @@ public interface ApiService {
     @POST("api/ItensPlaylist/playlist/{playlistId}/conteudo/{conteudoId}")
     Call<Void> vincularConteudo(@Path("playlistId") int playlistId, @Path("conteudoId") int conteudoId);
 
+    @GET("api/ItensPlaylist/playlist/{playlistId}")
+    Call<List<Conteudo>> getConteudosByPlaylistId(@Path("playlistId") int playlistId);
+    @DELETE ("api/ItensPlaylist/playlist/{playlistId}/conteudo/{conteudoId}")
+    Call<Void> deleteConteudo(@Path("playlistId") int playlistId, @Path("conteudoId") int conteudoId);
+
 }

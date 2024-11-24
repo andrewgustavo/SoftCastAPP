@@ -10,6 +10,7 @@ public class Conteudo implements Serializable {
     private String ClassificacaoIndicativa;
     private String VideoPath;
 
+
     // Construtor
     public Conteudo(int ID, String titulo, String tipo, String descricao, String classificacaoIndicativa, String videoPath) {
         this.ID = ID;

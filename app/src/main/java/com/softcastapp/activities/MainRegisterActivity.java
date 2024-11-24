@@ -82,8 +82,7 @@ public class MainRegisterActivity extends AppCompatActivity {
                     UsuarioRegister usuario = new UsuarioRegister(
                             nome.getText().toString(),
                             email.getText().toString(),
-                            passwordKey1,
-                            "1990-01-01"
+                            passwordKey1
                     );
 
                     // Enviar dados para a API com Retrofit
@@ -95,8 +94,7 @@ public class MainRegisterActivity extends AppCompatActivity {
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (response.isSuccessful()) {
                                 Toast.makeText(MainRegisterActivity.this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainRegisterActivity.this, DashboardActivity.class);
-                                startActivity(intent);
+                                finish();
                             } else {
                                 Toast.makeText(MainRegisterActivity.this, "Erro ao registrar. Tente novamente.", Toast.LENGTH_SHORT).show();
                             }

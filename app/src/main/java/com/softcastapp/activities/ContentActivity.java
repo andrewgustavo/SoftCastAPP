@@ -57,7 +57,7 @@ public class ContentActivity extends AppCompatActivity {
             onBackPressed();
         });
 
-        playlistId = getIntent().getIntExtra("playlistId", -1);
+        playlistId = getIntent().getIntExtra("PLAYLIST_ID", -1);
 
         if (playlistId == -1) {
             Toast.makeText(this, "ID da Playlist não encontrado", Toast.LENGTH_SHORT).show();
@@ -134,6 +134,10 @@ public class ContentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("PLAYLIST_ID", playlistId); // Passa o ID da playlist atualizada
+                    setResult(RESULT_OK, resultIntent);
+                    finish();
                     Toast.makeText(ContentActivity.this, "Conteúdo adicionado à playlist!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(ContentActivity.this, "Erro ao adicionar conteúdo", Toast.LENGTH_SHORT).show();
@@ -152,7 +156,7 @@ public class ContentActivity extends AppCompatActivity {
         videoView.setVideoURI(videoUri);
         videoView.start();
 
-            videoView.setOnCompletionListener(mp -> {
+        videoView.setOnCompletionListener(mp -> {
             videoView.setVisibility(View.GONE);
         });
     }

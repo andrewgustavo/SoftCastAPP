@@ -144,8 +144,8 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
             descricao = itemView.findViewById(R.id.content_description);
             classificacao = itemView.findViewById(R.id.content_classification);
             videoPath = itemView.findViewById(R.id.content_video_path);
-            addButton = itemView.findViewById(R.id.addButton);
             playButton = itemView.findViewById(R.id.playButton);
+            addButton = itemView.findViewById(R.id.addButton);
             videoView = itemView.findViewById(R.id.videoView);
         }
     }

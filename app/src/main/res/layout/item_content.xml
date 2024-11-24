@@ -56,6 +56,11 @@
         android:text="Caminho do vídeo"
         android:visibility="gone"/>
 
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp" />
     <!-- Botões para Adicionar à Playlist e Assistir -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,26 +70,20 @@
         <Button
             android:id="@+id/addButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Adicionar à Playlist"
             android:backgroundTint="@android:color/holo_blue_light"
+            android:text="Adicionar à Playlist"
             android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/playButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:text="Assistir"
             android:backgroundTint="@android:color/holo_green_light"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp" />
+            android:text="Assistir"
+            android:textColor="@android:color/white" />
     </LinearLayout>
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" />
 </LinearLayout>
